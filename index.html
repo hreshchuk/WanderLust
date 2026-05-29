@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WanderLust — Відкривай Світ</title>
+  <meta name="description" content="WanderLust — найкращий гід з туризму. Подорожуйте Європою, Азією, Америкою, Африкою та Океанією.">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Preconnect Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Nunito:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" role="navigation" aria-label="Головна навігація">
+    <div class="nav-brand">
+      <div class="nav-logo-icon" aria-hidden="true">✈️</div>
+      <span class="nav-logo-text">Wander<span>Lust</span></span>
+    </div>
+
+    <ul class="nav-links" role="list">
+      <li><a class="nav-link active" data-scroll="hero"         href="#hero">Головна</a></li>
+      <li><a class="nav-link"       data-scroll="search-section" href="#search-section">Пошук</a></li>
+      <li><a class="nav-link"       data-scroll="catalog"       href="#catalog">Каталог</a></li>
+      <li><a class="nav-link"       data-scroll="game"          href="#game">Гра</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <span id="nav-greeting" aria-live="polite"></span>
+      <button class="nav-search-btn" id="nav-search-btn" title="Пошук" aria-label="Відкрити пошук">🔍</button>
+      <button class="hamburger" id="hamburger" aria-label="Відкрити меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile dropdown menu -->
+  <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Мобільна навігація">
+    <a class="nav-link" data-scroll="hero"          href="#hero">🏠 Головна</a>
+    <a class="nav-link" data-scroll="search-section" href="#search-section">🔍 Пошук</a>
+    <a class="nav-link" data-scroll="catalog"        href="#catalog">🗺️ Каталог</a>
+    <a class="nav-link" data-scroll="game"           href="#game">🎮 Гра</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" aria-label="Вітальний розділ">
+    <div class="hero-bg-shapes" aria-hidden="true"></div>
+
+    <div class="hero-badge">🌍 Понад 25 напрямків світом</div>
+
+    <h1 class="hero-title">
+      Відкривай Світ<br>
+      з <em>WanderLust</em>
+    </h1>
+
+    <p class="hero-subtitle">
+      Від карпатських вершин до австралійських рифів —
+      знайди свою ідеальну подорож та поринь у нові враження.
+    </p>
+
+    <!-- Greeting -->
+    <div class="hero-greeting">
+      <h3>👋 Як вас звати, мандрівнику?</h3>
+      <form class="greeting-form" id="greeting-form" novalidate>
+        <input
+          class="greeting-input"
+          id="name-input"
+          type="text"
+          placeholder="Введіть ваше ім'я..."
+          maxlength="30"
+          autocomplete="given-name"
+        >
+        <button type="submit" class="greeting-btn">Привіт!</button>
+      </form>
+      <p id="greeting-message" aria-live="polite"></p>
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn-primary" data-scroll="catalog" href="#catalog">🗺️ Дослідити напрямки</a>
+      <a class="btn-secondary" data-scroll="game" href="#game">🎮 Зіграти у гру</a>
+    </div>
+
+    <div class="hero-stats" aria-label="Статистика">
+      <div class="stat">
+        <div class="stat-number">25+</div>
+        <div class="stat-label">Напрямків</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Регіонів</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Вражень</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEARCH ===== -->
+  <section id="search-section" aria-label="Пошук напрямків">
+    <div class="search-wrapper">
+      <h2>Знайди своє місце мрії</h2>
+      <form class="search-box" id="search-form" role="search" novalidate>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Пошук за країною, тегом або описом..."
+          autocomplete="off"
+          aria-label="Пошуковий запит"
+        >
+        <button type="submit" class="search-submit" aria-label="Шукати">Шукати ✈️</button>
+      </form>
+      <p id="search-results-label" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- ===== CATALOG ===== -->
+  <section id="catalog" class="section" aria-label="Каталог регіонів">
+    <div class="section-header">
+      <span class="section-badge">Регіони світу</span>
+      <h2 class="section-title">Обери свій напрямок</h2>
+      <p class="section-subtitle">Шість континентів, безліч культур — вибери регіон і поринь у пригоди.</p>
+    </div>
+
+    <div id="catalog-grid" class="categories-grid" role="list">
+      <!-- Завантажується з data/destinations.json через AJAX -->
+      <div class="loading"><div class="spinner" aria-label="Завантаження..."></div></div>
+    </div>
+  </section>
+
+  <!-- ===== DESTINATIONS ===== -->
+  <section id="destinations" class="section" style="display:none;" aria-label="Напрямки">
+    <div class="destinations-header">
+      <h2 class="destinations-title" id="destinations-header-title">Напрямки</h2>
+      <button id="back-to-categories" style="display:none;" aria-label="Повернутись до категорій">
+        ← Всі регіони
+      </button>
+    </div>
+
+    <div id="destinations-grid" class="destinations-grid" role="list">
+      <!-- Динамічно заповнюється -->
+    </div>
+  </section>
+
+  <!-- ===== GAME ===== -->
+  <section id="game" class="section" aria-label="Аркадна гра">
+    <div class="section-header">
+      <span class="section-badge">Міні-гра</span>
+      <h2 class="section-title" style="color:var(--white)">✈️ Лови Прапори!</h2>
+      <p class="section-subtitle">Керуй літаком та лови прапори країн — уникай важкого багажу!</p>
+    </div>
+
+    <div class="game-container">
+      <div class="game-wrapper">
+        <!-- HUD -->
+        <div class="game-info-bar">
+          <div class="game-score-box">
+            <div class="game-stat">
+              <div class="game-stat-label">Рахунок</div>
+              <div class="game-stat-value" id="game-score">0</div>
+            </div>
+            <div class="game-stat">
+              <div class="game-stat-label">Рівень</div>
+              <div class="game-stat-value" id="game-level">1</div>
+            </div>
+          </div>
+          <div class="game-stat">
+            <div class="game-stat-label">Життя</div>
+            <div class="game-stat-value lives" id="game-lives">❤️❤️❤️</div>
+          </div>
+        </div>
+
+        <!-- Canvas -->
+        <canvas id="game-canvas" aria-label="Аркадна гра — ігрове поле"></canvas>
+
+        <!-- Controls -->
+        <div class="game-controls">
+          <button class="game-btn" id="game-start-btn" aria-label="Старт гри">▶ Старт</button>
+          <button class="game-btn" id="game-reset-btn" aria-label="Скинути гру">↺ Скинути</button>
+        </div>
+
+        <p class="game-instructions">
+          ⌨️ Керування: клавіші <strong style="color:#fff">← →</strong> або свайп по екрану.
+          Лови 🏳️ прапори, уникай 🧳 багажу!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer" aria-label="Нижній колонтитул">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <h3>Wander<span>Lust</span></h3>
+        <p>
+          Ваш провідник у світі подорожей. Відкривайте нові горизонти, культури та незабутні враження разом з нами.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" title="Instagram" aria-label="Instagram">📸</a>
+          <a href="#" class="footer-social" title="Facebook" aria-label="Facebook">👤</a>
+          <a href="#" class="footer-social" title="Telegram" aria-label="Telegram">✈️</a>
+          <a href="#" class="footer-social" title="YouTube" aria-label="YouTube">▶️</a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="footer-col">
+        <h4>Навігація</h4>
+        <ul>
+          <li><a data-scroll="hero"           href="#hero">Головна</a></li>
+          <li><a data-scroll="catalog"        href="#catalog">Каталог</a></li>
+          <li><a data-scroll="destinations"   href="#destinations">Напрямки</a></li>
+          <li><a data-scroll="search-section" href="#search-section">Пошук</a></li>
+          <li><a data-scroll="game"           href="#game">Гра</a></li>
+        </ul>
+      </div>
+
+      <!-- Regions -->
+      <div class="footer-col">
+        <h4>Регіони</h4>
+        <ul>
+          <li><a href="#">🏰 Європа</a></li>
+          <li><a href="#">🏯 Азія</a></li>
+          <li><a href="#">🗽 Америка</a></li>
+          <li><a href="#">🦁 Африка</a></li>
+          <li><a href="#">🏄 Океанія</a></li>
+          <li><a href="#">🇺🇦 Україна</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="footer-col">
+        <h4>Новини</h4>
+        <p style="font-size:0.88rem; margin-bottom:12px;">Підпишіться на актуальні тури та знижки:</p>
+        <form class="footer-newsletter-form" id="newsletter-form" novalidate>
+          <input
+            class="footer-email-input"
+            type="email"
+            placeholder="ваш@email.com"
+            aria-label="Email для підписки"
+            required
+          >
+          <button type="submit" class="footer-sub-btn" aria-label="Підписатись">→</button>
+        </form>
+        <p style="font-size:0.78rem; margin-top:10px; color:rgba(255,255,255,0.35);">
+          Без спаму. Відписка в один клік.
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        © 2024 WanderLust. Всі права захищені.
+      </p>
+      <p class="footer-developers">
+        Розроблено командою:
+        <span>Гошовський Д. М.</span> •
+        <span>Грещук М. Я.</span> •
+        <span>Дмитрик В. В.</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/app.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
